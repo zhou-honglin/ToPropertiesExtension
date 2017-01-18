@@ -23,6 +23,7 @@ static inline NSString* GetNSType(id obj){
         else
             return @"NSInteger";
     }
+    if([obj isKindOfClass:[NSArray class]]) return @"NSArray*";
     return defaultType;
 }
 static inline NSString *GetQualifier(NSString* type){
@@ -103,7 +104,7 @@ static inline NSString *GetQualifier(NSString* type){
     
     NSMutableArray *newLines = [[NSMutableArray alloc] init];
     for (NSDictionary *property in properties) {
-        NSString *newLine = [NSString stringWithFormat:@"@property (nonatomic, %@) %@ %@;\n",property[@"qualifier"],property[@"type"],property[@"key"]];
+        NSString *newLine = [NSString stringWithFormat:@"@property (nonatomic,  %@) %@  %@;\n",property[@"qualifier"],property[@"type"],property[@"key"]];
         [newLines addObject:newLine];
     }
     
